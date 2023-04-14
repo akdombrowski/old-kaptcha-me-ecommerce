@@ -22,11 +22,8 @@ if (isProduction) {
   Router.events.on("routeChangeComplete", (url: string) => gtag.pageview(url));
 }
 
-const MyApp = ({
-  Component,
-  pageProps: { session, ...pageProps },
-}: AppProps) => (
-  <SessionProvider session={session}>
+const MyApp = ({ Component, pageProps }: AppProps) => (
+  <SessionProvider session={pageProps.session}>
     <Fragment>
       <Component {...pageProps} />
     </Fragment>
