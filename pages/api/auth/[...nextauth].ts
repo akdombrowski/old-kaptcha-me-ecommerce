@@ -1,9 +1,7 @@
-import NextAuth from "next-auth";
+import NextAuth, { Session, User } from "next-auth";
+import { JWT } from "next-auth/jwt";
 import GithubProvider from "next-auth/providers/github";
-import type {
-  OAuthConfig,
-  OAuthUserConfig,
-} from "next-auth/providers/oauth.d.ts";
+import type { OAuthConfig, OAuthUserConfig } from "next-auth/providers/oauth";
 
 interface PingOneProfile extends Record<string, any> {
   aud: string;
@@ -68,6 +66,25 @@ export const authOptions = {
       clientSecret: process.env.PINGONE_SECRET as string,
     }),
   ],
+  callbacks: {
+    session({
+      session,
+      token,
+      user,
+    }: {
+      session: Session;
+      token: JWT;
+      user: User;
+    }) {
+      const t = token;
+      console.log("t");
+      console.log(t);
+      const u = user;
+      console.log("u");
+      console.log(u);
+      return session;
+    },
+  },
 };
 
 export default NextAuth(authOptions);

@@ -1,5 +1,3 @@
-import NextAuth from "next-auth/next";
-
 export type VotesType = {
   count: number;
   value: number;
@@ -62,12 +60,14 @@ export type GtagEventType = {
 
 declare module "next-auth" {
   export interface Session {
-    user: {
-      id: string;
-      firstName?: string;
-      lastName?: string;
-      email: string;
-      address?: string;
-    };
+    user: User;
+  }
+
+  export interface User {
+    id: string;
+    firstName?: string;
+    lastName?: string;
+    email: string;
+    address?: string;
   }
 }
