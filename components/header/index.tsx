@@ -5,7 +5,6 @@ import Logo from "../../assets/icons/logo";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { RootState } from "store";
-import login from "../../components/auth/login";
 import LoginBtn from "../../components/auth/login";
 
 type HeaderType = {
